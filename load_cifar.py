@@ -37,7 +37,7 @@ def _load_batch_cifar10(filename):
 
 
 def _load_batch_cifar100(filename):
-    batch = np.load(filename)
+    batch = np.load(filename, encoding='latin1')
     data = batch['data'] / 255.0
     labels = np.asarray(batch['fine_labels'])
     return data.astype('float32'), labels.astype('int32')
