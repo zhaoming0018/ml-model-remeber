@@ -15,7 +15,7 @@ def load_raw_image():
     train_x = []
 
     def _load_batch_raw_cifar10(filename):
-        batch = np.load(filename)
+        batch = np.load(filename, encoding='latin1', allow_pickle=True)
         data = batch['data']
         return data
 
@@ -30,14 +30,14 @@ def load_raw_image():
 
 
 def _load_batch_cifar10(filename):
-    batch = np.load(filename, encoding='latin1')
+    batch = np.load(filename, encoding='latin1', allow_pickle=True)
     data = batch['data'] / 255.0  # scale between [0, 1]
     labels = np.asarray(batch['labels'])  # convert labels to one-hot representation
     return data.astype('float32'), labels.astype('int32')
 
 
 def _load_batch_cifar100(filename):
-    batch = np.load(filename, encoding='latin1')
+    batch = np.load(filename, encoding='latin1', allow_pickle=True)
     data = batch['data'] / 255.0
     labels = np.asarray(batch['fine_labels'])
     return data.astype('float32'), labels.astype('int32')
